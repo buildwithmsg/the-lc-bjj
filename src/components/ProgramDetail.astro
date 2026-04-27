@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import type { Program } from '@/data/programs';
+import { getCoach } from '@/data/coaches';
+import { getProgram } from '@/data/programs';
+import { site } from '@/data/site';
+import ScheduleSnippet from './ScheduleSnippet.astro';
+import CoachCard from './CoachCard.astro';
+import FacebookFeed from './FacebookFeed.astro';
+
+interface Props { program: Program; heroPhoto: ImageMetadata; coachPhoto: ImageMetadata }
+const { program, heroPhoto, coachPhoto } = Astro.props;
+const coach = getCoach(program.coachSlug)!;
+const combined = program.combinedWith ? getProgram(program.combinedWith) : undefined;
+---
+
+<section class="bg-iron text-paper">
+  <div class="relative">
+    <Image src={heroPhoto} alt={program.name} class="w-full h-[40vh] min-h-[280px] object-cover opacity-50" />
+    <div class="absolute inset-0 bg-gradient-to-t from-iron via-iron/40 to-transparent"></div>
+    <div class="absolute inset-0 container-page flex flex-col justify-end pb-10">
+      <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Program</p>
+      <h1 class="font-display text-5xl md:text-6xl mt-2 leading-none">{program.name}</h1>
+      <p class="mt-3 text-paper/85 max-w-prose">{program.tagline}</p>
+    </div>
+  </div>
+</section>
+
+<section class="container-page py-14 grid gap-10 lg:grid-cols-3">
+  <div class="lg:col-span-2 space-y-10">
+    <div>
+      <p class="eyebrow">What it is</p>
+      {program.whatItIs.map((para) => (
+        <p class="mt-3 leading-relaxed max-w-prose">{para}</p>
+      ))}
+    </div>
+
+    <div>
+      <p class="eyebrow">Who it's for</p>
+      <ul class="mt-3 space-y-2 max-w-prose">
+        {program.whoItsFor.map((item) => (
+          <li class="flex gap-2"><span class="text-blood font-bold">→</span><span>{item}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow">What to expect — first day</p>
+      <ul class="mt-3 space-y-2 max-w-prose">
+        {program.firstDayChecklist.map((item) => (
+          <li class="flex gap-2"><span class="text-blood font-bold">·</span><span>{item}</span></li>
+        ))}
+      </ul>
+    </div>
+
+    {combined && (
+      <div class="bg-paper border border-iron/10 rounded-lg p-5">
+        <p class="eyebrow">Combined class</p>
+        <p class="mt-2 text-sm">{program.shortName} trains in the same session as <a class="text-blood font-bold hover:underline" href={`/${combined.slug}`}>{combined.shortName}</a> on Mondays and Fridays at 6:00 PM.</p>
+      </div>
+    )}
+  </div>
+
+  <aside class="space-y-6">
+    <ScheduleSnippet programSlug={program.slug} />
+
+    <div>
+      <p class="eyebrow">Coach</p>
+      <div class="mt-3"><CoachCard coach={coach} photo={coachPhoto} /></div>
+    </div>
+
+    <FacebookFeed variant="compact" />
+  </aside>
+</section>
+
+<section class="bg-iron text-paper">
+  <div class="container-page py-12 flex flex-wrap items-center gap-6 justify-between">
+    <div>
+      <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">First class is FREE</p>
+      <p class="font-display text-3xl mt-1">Just stop in.</p>
+      <p class="text-paper/80 text-sm mt-1">{site.address.street} · {site.address.venueNote} · {site.address.city}, {site.address.state}</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a class="btn-primary" href={site.facebook} target="_blank" rel="noopener">DM us on Facebook</a>
+      <a class="bg-paper text-iron font-bold text-sm rounded-md px-4 py-3" href={`tel:${site.phoneTel}`}>{site.phone}</a>
+      <a class="border border-paper text-paper font-bold text-sm rounded-md px-4 py-3" href="/#visit">Map &amp; directions →</a>
+    </div>
+  </div>
+</section>
