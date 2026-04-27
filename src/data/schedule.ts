@@ -26,7 +26,6 @@ export const dayLabel: Record<DayOfWeek, string> = {
 export const schedule: ScheduleEntry[] = [
   { day: 'mon', startTime: '5:00 PM', startMinutes: 17 * 60, durationMinutes: 60, label: 'Kids BJJ',                chipStyle: 'kids',     programSlugs: ['kids-bjj'] },
   { day: 'mon', startTime: '6:00 PM', startMinutes: 18 * 60, durationMinutes: 60, label: 'NoGi BJJ + Kickboxing',   chipStyle: 'combined', programSlugs: ['bjj-nogi', 'kickboxing'] },
-  { day: 'tue', startTime: '12:00 PM', startMinutes: 12 * 60, durationMinutes: 60, label: 'Gi BJJ',                  chipStyle: 'gi',       programSlugs: ['bjj-gi'] },
   { day: 'fri', startTime: '5:00 PM', startMinutes: 17 * 60, durationMinutes: 60, label: 'Kids BJJ',                chipStyle: 'kids',     programSlugs: ['kids-bjj'] },
   { day: 'fri', startTime: '6:00 PM', startMinutes: 18 * 60, durationMinutes: 60, label: 'NoGi BJJ + Kickboxing',   chipStyle: 'combined', programSlugs: ['bjj-nogi', 'kickboxing'] },
   { day: 'sat', startTime: '12:00 PM', startMinutes: 12 * 60, durationMinutes: 60, label: 'Gi BJJ',                  chipStyle: 'gi',       programSlugs: ['bjj-gi'] },

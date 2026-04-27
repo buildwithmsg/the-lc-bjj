@@ -3,8 +3,8 @@ import { schedule } from '../schedule';
 import { programSlugs } from '../programs';
 
 describe('schedule data', () => {
-  it('has six entries (Mon×2, Tue, Fri×2, Sat)', () => {
-    expect(schedule).toHaveLength(6);
+  it('has five entries (Mon×2, Fri×2, Sat)', () => {
+    expect(schedule).toHaveLength(5);
   });
 
   it('every entry references a real program slug', () => {

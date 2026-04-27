@@ -10,6 +10,7 @@ describe('groupByDay', () => {
 
   it('returns empty arrays for days with no classes', () => {
     const grouped = groupByDay(schedule);
+    expect(grouped.tue).toEqual([]);
     expect(grouped.wed).toEqual([]);
     expect(grouped.thu).toEqual([]);
     expect(grouped.sun).toEqual([]);
@@ -24,7 +25,7 @@ describe('groupByDay', () => {
 
 describe('getEntriesForProgram', () => {
   it('returns all entries that include the given program slug', () => {
-    expect(getEntriesForProgram('bjj-gi')).toHaveLength(2);
+    expect(getEntriesForProgram('bjj-gi')).toHaveLength(1);
     expect(getEntriesForProgram('kids-bjj')).toHaveLength(2);
     expect(getEntriesForProgram('bjj-nogi')).toHaveLength(2);
     expect(getEntriesForProgram('kickboxing')).toHaveLength(2);

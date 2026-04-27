@@ -12,8 +12,8 @@ export const coaches: Coach[] = [
     slug: 'tommy-walker',
     name: 'Professor Tommy Walker',
     photoFile: 'coach-tommy-walker.jpg',
-    bio: "Owner, head BJJ instructor, and MMA coach at The LC. Tommy started training Brazilian Jiu Jitsu in 2005 and earned his black belt under Professor Brian Davis in 2014. He's a national grappling champion in the Expert division (brown and black belts), competes regularly at high-level tournaments around the country, and built the fight team that competes under The LC banner.",
-    credentials: ['BJJ Black Belt', 'National Grappling Champion', 'MMA Coach'],
+    bio: "Owner, head BJJ instructor, and MMA coach at The LC. Tommy started training Brazilian Jiu Jitsu in 2005 and earned his black belt under Professor Brian Davis in 2014. He's a national and world grappling champion in the Expert division (brown and black belts), competes regularly at high-level tournaments around the country, and built the fight team that competes under The LC banner.",
+    credentials: ['BJJ Black Belt', 'National & World Champion', 'MMA Coach'],
     isHead: true,
   },
   {
@@ -36,8 +36,8 @@ export const coaches: Coach[] = [
     slug: 'shayne-goforth',
     name: 'Coach Shayne Goforth',
     photoFile: 'coach-shayne-goforth.jpg',
-    bio: "Brazilian Jiu Jitsu black belt under Professor Tommy Walker (2022) and one of the region's most prolific competitors — winning and medaling consistently at national and world tournaments through every belt level. Shayne brings his tournament experience to both Gi and NoGi classes, focused on translating technical drills into high-pressure performance.",
-    credentials: ['BJJ Black Belt', 'National & World Medalist'],
+    bio: "Brazilian Jiu Jitsu black belt under Professor Tommy Walker (2022) and one of the region's most prolific competitors — a national champion and world medalist who has competed and placed at every belt level. Shayne brings his tournament experience to both Gi and NoGi classes, focused on translating technical drills into high-pressure performance.",
+    credentials: ['BJJ Black Belt', 'National Champion', 'World Medalist'],
     isHead: false,
   },
 ];

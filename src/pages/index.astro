@@ -68,6 +68,23 @@ function photoFor(filename: string, map: typeof cardPhotos) {
     </div>
   </section>
 
+  <section id="privates" class="container-page pb-20">
+    <div class="bg-iron text-paper rounded-lg overflow-hidden grid lg:grid-cols-2 items-stretch">
+      <div class="relative aspect-[4/3] lg:aspect-auto lg:min-h-[360px]">
+        <Image src={photoFor('coach-chase-mann.jpg', coachPhotos)} alt="Coach Chase Mann" class="absolute inset-0 w-full h-full object-cover" />
+      </div>
+      <div class="p-8 lg:p-12 flex flex-col justify-center">
+        <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Private Lessons</p>
+        <h2 class="font-display text-4xl mt-2 leading-tight">One-on-one<br/>with Chase Mann.</h2>
+        <p class="mt-4 text-paper/85 max-w-prose">
+          Coach Chase offers 1-hour private lessons for anyone who wants focused, individual attention — prepping for a tournament, drilling a specific position, or getting up to speed before joining a regular class.
+        </p>
+        <p class="mt-3 text-paper/70 text-sm">To book, message Chase directly on Facebook.</p>
+        <a class="btn-primary mt-5 self-start" href="https://www.facebook.com/chase.mann.5" target="_blank" rel="noopener">Message Chase ↗</a>
+      </div>
+    </div>
+  </section>
+
   <section class="bg-paper border-y border-iron/10">
     <div class="container-page py-16 grid gap-10 lg:grid-cols-2 items-center">
       <div>
