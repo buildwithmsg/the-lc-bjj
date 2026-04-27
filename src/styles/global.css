@@ -1,0 +1,31 @@
+@import '@fontsource/bebas-neue/400.css';
+@import '@fontsource-variable/inter';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { @apply bg-bone text-iron; }
+  body { @apply font-sans antialiased; }
+  h1, h2, h3, h4 { @apply font-display tracking-wide; }
+  ::selection { @apply bg-blood text-paper; }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-eyebrow text-blood font-semibold;
+  }
+  .container-page { @apply mx-auto max-w-6xl px-5 sm:px-8; }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-blood text-paper font-bold text-sm
+           rounded-md px-4 py-3 hover:bg-oxblood transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-iron text-iron font-bold text-sm
+           rounded-md px-4 py-3 hover:bg-iron hover:text-paper transition-colors;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1 text-blood font-bold text-sm hover:text-oxblood transition-colors;
+  }
+}

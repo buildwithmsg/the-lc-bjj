@@ -1,0 +1,52 @@
+---
+import { site } from '@/data/site';
+
+interface Props {
+  variant?: 'full' | 'compact';
+  height?: number;
+}
+const { variant = 'full', height = 500 } = Astro.props;
+const pageUrl = site.facebook;
+const iframeSrc = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(pageUrl)}&tabs=timeline&width=500&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`;
+const compactSrc = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(pageUrl)}&tabs=&width=320&height=200&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false`;
+---
+
+<div class="bg-paper border border-iron/10 rounded-lg overflow-hidden">
+  <div class="px-4 py-2 border-b border-iron/10 flex items-center justify-between">
+    <p class="text-xs uppercase tracking-eyebrow font-bold text-iron/60">Latest from Facebook</p>
+    <a href={pageUrl} target="_blank" rel="noopener" class="text-blood text-xs font-bold hover:underline">Open ↗</a>
+  </div>
+  {variant === 'full' ? (
+    <iframe
+      src={iframeSrc}
+      width="500"
+      height={height}
+      style="border:none;overflow:hidden"
+      scrolling="no"
+      frameborder="0"
+      allowfullscreen={true}
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      class="w-full"
+      loading="lazy"
+      title="The LC on Facebook"
+    ></iframe>
+  ) : (
+    <iframe
+      src={compactSrc}
+      width="320"
+      height="200"
+      style="border:none;overflow:hidden"
+      scrolling="no"
+      frameborder="0"
+      allowfullscreen={true}
+      class="w-full"
+      loading="lazy"
+      title="The LC on Facebook"
+    ></iframe>
+  )}
+  <noscript>
+    <div class="p-4 text-sm">
+      Latest posts at <a class="text-blood font-bold" href={pageUrl}>facebook.com/TheLCFightTeam</a>.
+    </div>
+  </noscript>
+</div>

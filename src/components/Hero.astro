@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import hero from '@/assets/photos/gym-hero.jpg';
+import { site } from '@/data/site';
+---
+
+<section class="relative bg-iron text-paper overflow-hidden">
+  <div class="absolute inset-0">
+    <Image src={hero} alt="The LC gym" class="w-full h-full object-cover opacity-40" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-r from-iron via-iron/80 to-iron/40"></div>
+  </div>
+  <div class="relative container-page py-24 md:py-32 max-w-3xl">
+    <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Walnut Ridge, AR · Inside K1 Fitness</p>
+    <h1 class="font-display text-6xl md:text-7xl mt-3 leading-[0.95]">
+      Real training.<br/><span class="text-blood">Real people.</span><br/>The LC.
+    </h1>
+    <p class="mt-5 max-w-prose text-paper/80 text-base">
+      {site.tagline}
+    </p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a class="btn-primary text-base" href="#schedule">First class is FREE →</a>
+      <a class="border border-paper text-paper font-bold text-sm rounded-md px-4 py-3 hover:bg-paper hover:text-iron transition-colors" href="#programs">What we offer</a>
+    </div>
+  </div>
+</section>

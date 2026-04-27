@@ -1,0 +1,21 @@
+---
+import { getEntriesForProgram } from '@/lib/schedule-utils';
+import { dayLabel } from '@/data/schedule';
+
+interface Props { programSlug: string }
+const { programSlug } = Astro.props;
+const entries = getEntriesForProgram(programSlug);
+---
+
+<div class="bg-paper border border-iron/10 rounded-lg p-5">
+  <p class="eyebrow">When it meets</p>
+  {entries.length === 0 ? (
+    <p class="mt-2 text-sm text-iron/70">By appointment / fight camp schedule. Talk to a coach for next session.</p>
+  ) : (
+    <ul class="mt-2 space-y-1 text-sm">
+      {entries.map((e) => (
+        <li><span class="font-bold">{dayLabel[e.day]}</span> · {e.startTime} · {e.label}</li>
+      ))}
+    </ul>
+  )}
+</div>

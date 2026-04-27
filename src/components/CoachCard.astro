@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import type { Coach } from '@/data/coaches';
+
+interface Props { coach: Coach; photo: ImageMetadata }
+const { coach, photo } = Astro.props;
+---
+
+<article class="bg-paper border border-iron/10 rounded-lg overflow-hidden">
+  <div class="aspect-[4/5] overflow-hidden">
+    <Image src={photo} alt={coach.name} class="w-full h-full object-cover" />
+  </div>
+  <div class="p-4">
+    <h3 class="text-lg font-bold">{coach.name}</h3>
+    {coach.credentials.length > 0 && (
+      <p class="text-xs text-blood font-semibold uppercase tracking-eyebrow mt-1">{coach.credentials.join(' · ')}</p>
+    )}
+    <p class="mt-2 text-sm text-iron/70 leading-snug">{coach.bio}</p>
+  </div>
+</article>

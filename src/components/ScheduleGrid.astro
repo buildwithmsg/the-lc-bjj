@@ -1,0 +1,46 @@
+---
+import { groupByDay } from '@/lib/schedule-utils';
+import { dayOrder, dayLabel, type ChipStyle } from '@/data/schedule';
+
+const grouped = groupByDay();
+
+const chipClass: Record<ChipStyle, string> = {
+  gi: 'bg-blood text-paper',
+  combined: 'bg-iron text-paper',
+  kids: 'bg-stone text-paper',
+};
+---
+
+<section id="schedule" class="container-page py-16">
+  <p class="eyebrow">Schedule</p>
+  <h2 class="text-4xl mt-2">Just stop in.</h2>
+  <p class="mt-3 max-w-prose">First class is on us. You're also welcome to sit and watch a class before you ever step on the mat.</p>
+
+  <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+    {dayOrder.map((day) => (
+      <div class="bg-paper border border-iron/10 rounded-lg p-3 min-h-[110px]">
+        <p class="text-[11px] uppercase tracking-eyebrow text-iron/55 font-bold">{dayLabel[day]}</p>
+        <div class="mt-2 space-y-1.5">
+          {grouped[day].length === 0 ? (
+            <p class="text-iron/30 italic text-xs">—</p>
+          ) : grouped[day].map((entry) => (
+            <span class={`block text-xs font-bold rounded px-2 py-1.5 leading-tight ${chipClass[entry.chipStyle]}`}>
+              {entry.startTime}<br /><span class="font-semibold opacity-90">{entry.label}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="mt-6 text-sm text-iron/70 max-w-prose">
+    Schedule changes are posted on our <a class="text-blood font-semibold hover:underline" href="https://www.facebook.com/TheLCFightTeam" target="_blank" rel="noopener">Facebook page</a> — check there before driving in if it's been a few weeks.
+  </p>
+
+</section>
+
+<div class="container-page pb-6 flex flex-wrap gap-3 text-xs">
+  <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded bg-blood"></span> Gi BJJ</span>
+  <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded bg-iron"></span> NoGi + Kickboxing (combined)</span>
+  <span class="inline-flex items-center gap-2"><span class="w-3 h-3 rounded bg-stone"></span> Kids BJJ</span>
+</div>

@@ -26,5 +26,9 @@ yarn-error.log*
 # Vercel
 .vercel/
 
+# Playwright artifacts
+test-results/
+playwright-report/
+
 # Brainstorm session artifacts (visual companion)
 .superpowers/

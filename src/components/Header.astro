@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import logo from '@/assets/brand/the-lc-logo.png';
+import { programs } from '@/data/programs';
+
+interface Props { ctaHref?: string }
+const { ctaHref = '/#schedule' } = Astro.props;
+---
+
+<header class="bg-bone border-b border-iron/10 relative">
+  <div class="container-page flex items-center justify-between gap-4 py-4">
+    <a href="/" class="flex items-center gap-3">
+      <Image src={logo} alt="The LC logo" width={48} height={48} class="rounded-sm" />
+      <span class="font-display text-2xl tracking-wide leading-none">The LC</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
+      <a href="/" class="hover:text-blood">Home</a>
+      <details class="relative group">
+        <summary class="cursor-pointer list-none hover:text-blood select-none">Programs ▾</summary>
+        <div class="absolute right-0 mt-2 w-56 bg-paper border border-iron/10 rounded-md shadow-lg p-2 z-10">
+          {programs.map((p) => (
+            <a href={`/${p.slug}`} class="block px-3 py-2 rounded hover:bg-blood/5">{p.shortName}</a>
+          ))}
+        </div>
+      </details>
+      <a href="/#coaches" class="hover:text-blood">Coaches</a>
+      <a href="/#visit" class="hover:text-blood">Visit</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href={ctaHref} class="btn-primary text-xs sm:text-sm">First class is FREE →</a>
+      <details class="md:hidden relative">
+        <summary class="cursor-pointer list-none px-2 py-2 -mr-2 select-none" aria-label="Open menu">
+          <span class="block w-5 h-0.5 bg-iron mb-1.5"></span>
+          <span class="block w-5 h-0.5 bg-iron mb-1.5"></span>
+          <span class="block w-5 h-0.5 bg-iron"></span>
+        </summary>
+        <div class="absolute right-0 top-full mt-2 w-64 bg-paper border border-iron/10 rounded-md shadow-lg p-2 z-20">
+          <a href="/" class="block px-3 py-2 rounded hover:bg-blood/5 font-semibold">Home</a>
+          <p class="px-3 pt-3 pb-1 text-[11px] uppercase tracking-eyebrow text-iron/55 font-bold">Programs</p>
+          {programs.map((p) => (
+            <a href={`/${p.slug}`} class="block px-3 py-2 rounded hover:bg-blood/5">{p.shortName}</a>
+          ))}
+          <a href="/#coaches" class="block px-3 py-2 rounded hover:bg-blood/5 font-semibold mt-2 border-t border-iron/10 pt-3">Coaches</a>
+          <a href="/#visit" class="block px-3 py-2 rounded hover:bg-blood/5 font-semibold">Visit</a>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <script>
+    // Close any header <details> dropdowns on Escape or click outside.
+    const headerDetails = Array.from(document.querySelectorAll('header details'));
+    document.addEventListener('click', (e) => {
+      for (const d of headerDetails) {
+        if (d instanceof HTMLDetailsElement && !d.contains(e.target as Node)) d.open = false;
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      for (const d of headerDetails) {
+        if (d instanceof HTMLDetailsElement) d.open = false;
+      }
+    });
+  </script>
+</header>
