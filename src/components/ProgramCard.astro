@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import type { Program } from '@/data/programs';
+
+interface Props { program: Program; photo: ImageMetadata }
+const { program, photo } = Astro.props;
+---
+
+<a href={`/${program.slug}`} class="group block bg-paper border border-iron/10 rounded-lg overflow-hidden hover:-translate-y-0.5 hover:shadow-lg transition">
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <Image src={photo} alt={program.name} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+    <div class="absolute inset-0 bg-gradient-to-t from-iron/70 via-iron/10 to-transparent"></div>
+    <span class="absolute top-3 left-3 font-display text-xl text-paper tracking-wider">{program.cardLabel}</span>
+  </div>
+  <div class="p-4">
+    <h3 class="text-base font-bold">{program.name}</h3>
+    <p class="mt-1 text-sm text-iron/70 leading-snug">{program.tagline}</p>
+    <p class="mt-3 text-blood text-sm font-bold group-hover:translate-x-0.5 transition-transform">Learn more →</p>
+  </div>
+</a>

@@ -1,0 +1,29 @@
+---
+import { site } from '@/data/site';
+import FacebookFeed from './FacebookFeed.astro';
+const mapEmbed = `https://www.google.com/maps?q=${encodeURIComponent(site.address.street + ', ' + site.address.city + ', ' + site.address.state + ' ' + site.address.postalCode)}&output=embed`;
+---
+
+<section id="visit" class="bg-iron text-paper">
+  <div class="container-page py-16 grid gap-10 lg:grid-cols-2 items-start">
+    <div>
+      <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Visit</p>
+      <h2 class="font-display text-5xl mt-2 leading-none">Stop in.<br/>Watch a class.<br/>Roll with us.</h2>
+      <div class="mt-6 space-y-1 text-sm">
+        <p class="font-bold">{site.address.street}</p>
+        <p class="opacity-80">{site.address.venueNote}</p>
+        <p class="opacity-80">{site.address.city}, {site.address.state} {site.address.postalCode}</p>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a class="btn-primary" href={site.facebook} target="_blank" rel="noopener">DM us on Facebook</a>
+        <a class="bg-paper text-iron font-bold text-sm rounded-md px-4 py-3 hover:bg-stone hover:text-paper transition-colors" href={`tel:${site.phoneTel}`}>{site.phone}</a>
+      </div>
+      <div class="mt-8 rounded-lg overflow-hidden border border-paper/10 aspect-video">
+        <iframe src={mapEmbed} class="w-full h-full" loading="lazy" title="Map to The LC"></iframe>
+      </div>
+    </div>
+    <div>
+      <FacebookFeed />
+    </div>
+  </div>
+</section>
