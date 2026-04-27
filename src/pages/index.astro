@@ -1,11 +1,71 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '@/components/Layout.astro';
+import Hero from '@/components/Hero.astro';
+import ScheduleGrid from '@/components/ScheduleGrid.astro';
+import ProgramCard from '@/components/ProgramCard.astro';
+import CoachCard from '@/components/CoachCard.astro';
+import VisitBand from '@/components/VisitBand.astro';
+import { programs } from '@/data/programs';
+import { coaches } from '@/data/coaches';
 import { site } from '@/data/site';
+import aboutBanner from '@/assets/photos/about-banner.jpg';
+
+// Map cardPhotoFile -> imported asset module so Astro <Image /> can transform it.
+const cardPhotos = import.meta.glob<{ default: ImageMetadata }>('@/assets/photos/*-card.jpg', { eager: true });
+const coachPhotos = import.meta.glob<{ default: ImageMetadata }>('@/assets/photos/coach-*.jpg', { eager: true });
+
+function photoFor(filename: string, map: typeof cardPhotos) {
+  const match = Object.entries(map).find(([k]) => k.endsWith('/' + filename));
+  if (!match) throw new Error(`Missing photo: ${filename}`);
+  return match[1].default;
+}
 ---
-<Layout title={`${site.name} — ${site.tagline}`}>
-  <section class="container-page py-20">
-    <p class="eyebrow">Walnut Ridge, AR · Inside K1 Fitness</p>
-    <h1 class="text-6xl mt-2 leading-none">REAL TRAINING. REAL PEOPLE.</h1>
-    <p class="mt-4 max-w-prose">Header, footer, and JSON-LD smoke test.</p>
+
+<Layout title={`${site.name} — Brazilian Jiu Jitsu in Walnut Ridge, AR`}
+        description={site.tagline}>
+  <Hero />
+
+  <section id="programs" class="container-page py-16">
+    <p class="eyebrow">Programs</p>
+    <h2 class="text-4xl mt-2">Find your program</h2>
+    <p class="mt-3 max-w-prose">Five paths under one roof. Every adult class is open to first-timers.</p>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      {programs.map((p) => (
+        <ProgramCard program={p} photo={photoFor(p.cardPhotoFile, cardPhotos)} />
+      ))}
+    </div>
   </section>
+
+  <ScheduleGrid />
+
+  <section id="coaches" class="container-page py-16">
+    <p class="eyebrow">Coaches</p>
+    <h2 class="text-4xl mt-2">Who you'll train with</h2>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {coaches.map((c) => (
+        <CoachCard coach={c} photo={photoFor(c.photoFile, coachPhotos)} />
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-paper border-y border-iron/10">
+    <div class="container-page py-16 grid gap-10 lg:grid-cols-2 items-center">
+      <div>
+        <p class="eyebrow">Why The LC</p>
+        <h2 class="text-4xl mt-2">Abandon modern culture.<br/>Pick up something real.</h2>
+        <p class="mt-4 max-w-prose">
+          The LC is a small gym with a serious mat. We train Brazilian Jiu Jitsu, kickboxing, and an MMA fight team out of a working space inside K1 Fitness — not a polished franchise, not a punch-card wellness lounge. People who train here show up because they want to learn how to fight, how to grapple, and how to fall down and get back up. New students are welcome at any class.
+        </p>
+        <p class="mt-3 max-w-prose">
+          The first class is on us. Bring water and a willingness to learn.
+        </p>
+      </div>
+      <div class="rounded-lg overflow-hidden">
+        <Image src={aboutBanner} alt="The LC team" class="w-full h-auto" />
+      </div>
+    </div>
+  </section>
+
+  <VisitBand />
 </Layout>
