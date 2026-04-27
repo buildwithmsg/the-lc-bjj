@@ -17,7 +17,7 @@ const combined = program.combinedWith ? getProgram(program.combinedWith) : undef
 
 <section class="bg-iron text-paper">
   <div class="relative">
-    <Image src={heroPhoto} alt={program.name} class="w-full h-[40vh] min-h-[280px] object-cover opacity-50" />
+    <Image src={heroPhoto} alt={program.name} class="w-full h-[40vh] min-h-[280px] object-cover opacity-50" loading="eager" fetchpriority="high" />
     <div class="absolute inset-0 bg-gradient-to-t from-iron via-iron/40 to-transparent"></div>
     <div class="absolute inset-0 container-page flex flex-col justify-end pb-10">
       <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Program</p>

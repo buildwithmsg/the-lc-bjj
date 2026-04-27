@@ -6,7 +6,7 @@ import { site } from '@/data/site';
 
 <section class="relative bg-iron text-paper overflow-hidden">
   <div class="absolute inset-0">
-    <Image src={hero} alt="The LC gym" class="w-full h-full object-cover opacity-40" />
+    <Image src={hero} alt="The LC gym" class="w-full h-full object-cover opacity-40" loading="eager" fetchpriority="high" />
     <div class="absolute inset-0 bg-gradient-to-r from-iron via-iron/80 to-iron/40"></div>
   </div>
   <div class="relative container-page py-24 md:py-32 max-w-3xl">
