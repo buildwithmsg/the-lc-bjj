@@ -117,7 +117,7 @@ export const programs: Program[] = [
       'Kids with extra energy who need a healthy place to spend it.',
     ],
     firstDayChecklist: [
-      'Athletic clothes — gym shorts and a t-shirt are fine for the first day.',
+      'Athletic clothes — gym shorts and a t-shirt work great.',
       'Water bottle.',
       'Plan to arrive 10 minutes early — parents are welcome to sit and watch the entire class.',
       'No experience expected. We start at the beginning.',
