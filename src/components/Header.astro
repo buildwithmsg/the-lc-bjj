@@ -16,57 +16,17 @@ const { ctaHref = '/#schedule' } = Astro.props;
 
     <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
       <a href="/" class="hover:text-blood">Home</a>
-      <div class="relative" id="programs-menu">
-        <button
-          type="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-          class="cursor-pointer hover:text-blood select-none"
-          id="programs-menu-btn"
-        >Programs ▾</button>
-        <div
-          id="programs-dropdown"
-          class="absolute right-0 mt-2 w-56 bg-paper border border-iron/10 rounded-md shadow-lg p-2 z-10 hidden"
-          role="menu"
-        ></div>
-      </div>
+      <details class="relative group">
+        <summary class="cursor-pointer list-none hover:text-blood select-none">Programs ▾</summary>
+        <div class="absolute right-0 mt-2 w-56 bg-paper border border-iron/10 rounded-md shadow-lg p-2 z-10">
+          {programs.map((p) => (
+            <a href={`/${p.slug}`} class="block px-3 py-2 rounded hover:bg-blood/5">{p.shortName}</a>
+          ))}
+        </div>
+      </details>
       <a href="/#coaches" class="hover:text-blood">Coaches</a>
       <a href="/#visit" class="hover:text-blood">Visit</a>
     </nav>
-
-    <script define:vars={{ programs }}>
-      const btn = document.getElementById('programs-menu-btn');
-      const dropdown = document.getElementById('programs-dropdown');
-      let populated = false;
-
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        if (!expanded) {
-          if (!populated) {
-            programs.forEach((p) => {
-              const a = document.createElement('a');
-              a.href = '/' + p.slug;
-              a.className = 'block px-3 py-2 rounded hover:bg-blood/5';
-              a.textContent = p.shortName;
-              dropdown.appendChild(a);
-            });
-            populated = true;
-          }
-          dropdown.classList.remove('hidden');
-          btn.setAttribute('aria-expanded', 'true');
-        } else {
-          dropdown.classList.add('hidden');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!document.getElementById('programs-menu').contains(e.target)) {
-          dropdown.classList.add('hidden');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    </script>
 
     <a href={ctaHref} class="btn-primary text-xs sm:text-sm">First class is FREE →</a>
   </div>

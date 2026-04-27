@@ -18,7 +18,7 @@ for (const slug of slugs) {
 test('NoGi page links to Kickboxing as combined-class partner', async ({ page }) => {
   await page.goto('/bjj-nogi');
   await expect(page.getByText(/Combined class/i)).toBeVisible();
-  await expect(page.locator('a[href="/kickboxing"]')).toBeVisible();
+  await expect(page.locator('main a[href="/kickboxing"]')).toBeVisible();
 });
 
 test('MMA page shows fighters and results placeholders when data is empty', async ({ page }) => {
