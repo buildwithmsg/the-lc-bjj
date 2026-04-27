@@ -1,20 +1,22 @@
 ---
 import { Image } from 'astro:assets';
 import hero from '@/assets/photos/gym-hero.jpg';
+import logo from '@/assets/brand/the-lc-logo.png';
 import { site } from '@/data/site';
 ---
 
 <section class="relative bg-iron text-paper overflow-hidden">
   <div class="absolute inset-0">
-    <Image src={hero} alt="The LC gym" class="w-full h-full object-cover opacity-40" loading="eager" fetchpriority="high" />
-    <div class="absolute inset-0 bg-gradient-to-r from-iron via-iron/80 to-iron/40"></div>
+    <Image src={hero} alt="The LC gym" class="w-full h-full object-cover opacity-25" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-gradient-to-br from-iron via-iron/85 to-iron/55"></div>
   </div>
-  <div class="relative container-page py-24 md:py-32 max-w-3xl">
+  <div class="relative container-page py-20 md:py-28 max-w-3xl">
     <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Walnut Ridge, AR · Inside K1 Fitness</p>
-    <h1 class="font-display text-6xl md:text-7xl mt-3 leading-[0.95]">
-      Real training.<br/><span class="text-blood">Real people.</span><br/>The LC.
+    <Image src={logo} alt="The LC" class="mt-6 w-72 md:w-96 h-auto drop-shadow-xl" loading="eager" fetchpriority="high" />
+    <h1 class="mt-8 font-display text-3xl md:text-4xl leading-tight">
+      Real training. <span class="text-blood">Real people.</span>
     </h1>
-    <p class="mt-5 max-w-prose text-paper/80 text-base">
+    <p class="mt-4 max-w-prose text-paper/80 text-base">
       {site.tagline}
     </p>
     <div class="mt-7 flex flex-wrap gap-3">

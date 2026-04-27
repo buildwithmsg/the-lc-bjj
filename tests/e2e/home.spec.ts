@@ -15,9 +15,11 @@ test('homepage loads with hero, schedule, and visit sections', async ({ page }) 
   await expect(page.locator('#schedule .bg-iron')).toHaveCount(2);    // Combined x2
   await expect(page.locator('#schedule .bg-stone')).toHaveCount(2);   // Kids x2
 
-  // Visit section + Facebook iframe
+  // Visit section visible
   await expect(page.locator('#visit')).toBeVisible();
-  await expect(page.locator('#visit iframe[title*="Facebook"]')).toBeVisible();
+
+  // Facebook feed surfaced in its own section
+  await expect(page.locator('#facebook iframe[title*="Facebook"]')).toBeVisible();
 
   // JSON-LD present
   const ld = await page.locator('script[type="application/ld+json"]').textContent();

@@ -6,6 +6,7 @@ import ScheduleGrid from '@/components/ScheduleGrid.astro';
 import ProgramCard from '@/components/ProgramCard.astro';
 import CoachCard from '@/components/CoachCard.astro';
 import VisitBand from '@/components/VisitBand.astro';
+import FacebookFeed from '@/components/FacebookFeed.astro';
 import { programs } from '@/data/programs';
 import { coaches } from '@/data/coaches';
 import { site } from '@/data/site';
@@ -38,6 +39,22 @@ function photoFor(filename: string, map: typeof cardPhotos) {
   </section>
 
   <ScheduleGrid />
+
+  <section id="facebook" class="container-page py-16 border-t border-iron/10">
+    <div class="grid lg:grid-cols-3 gap-10 items-start">
+      <div class="lg:col-span-1">
+        <p class="eyebrow">From Facebook</p>
+        <h2 class="text-3xl mt-2">Schedule changes,<br/>news, results.</h2>
+        <p class="mt-4 text-iron/70 max-w-prose">
+          We post updates on Facebook first — schedule changes, fight night announcements, and gym news all live there. If a class time has shifted recently, you'll see it here.
+        </p>
+        <a class="btn-primary mt-6" href={site.facebook} target="_blank" rel="noopener">Open Facebook ↗</a>
+      </div>
+      <div class="lg:col-span-2">
+        <FacebookFeed />
+      </div>
+    </div>
+  </section>
 
   <section id="coaches" class="container-page py-16">
     <p class="eyebrow">Coaches</p>
