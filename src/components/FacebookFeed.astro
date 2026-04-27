@@ -11,22 +11,18 @@ const iframeSrc = `https://www.facebook.com/plugins/page.php?href=${encodeURICom
 const compactSrc = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(pageUrl)}&tabs=&width=320&height=200&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false`;
 ---
 
-<div class="bg-paper border border-iron/10 rounded-lg overflow-hidden">
-  <div class="px-4 py-2 border-b border-iron/10 flex items-center justify-between">
-    <p class="text-xs uppercase tracking-eyebrow font-bold text-iron/60">Latest from Facebook</p>
-    <a href={pageUrl} target="_blank" rel="noopener" class="text-blood text-xs font-bold hover:underline">Open ↗</a>
-  </div>
+<div class="bg-paper rounded-lg overflow-hidden shadow-2xl shadow-black/40 max-w-[500px]">
   {variant === 'full' ? (
     <iframe
       src={iframeSrc}
       width="500"
       height={height}
-      style="border:none;overflow:hidden"
+      style="border:none;overflow:hidden;display:block"
       scrolling="no"
       frameborder="0"
       allowfullscreen={true}
       allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-      class="w-full"
+      class="w-full block"
       loading="lazy"
       title="The LC on Facebook"
     ></iframe>
@@ -35,15 +31,23 @@ const compactSrc = `https://www.facebook.com/plugins/page.php?href=${encodeURICo
       src={compactSrc}
       width="320"
       height="200"
-      style="border:none;overflow:hidden"
+      style="border:none;overflow:hidden;display:block"
       scrolling="no"
       frameborder="0"
       allowfullscreen={true}
-      class="w-full"
+      class="w-full block"
       loading="lazy"
       title="The LC on Facebook"
     ></iframe>
   )}
+  <a
+    href={pageUrl}
+    target="_blank"
+    rel="noopener"
+    class="block px-4 py-2.5 text-xs font-bold text-blood hover:bg-blood hover:text-paper transition-colors text-center border-t border-iron/10"
+  >
+    Open The LC on Facebook ↗
+  </a>
   <noscript>
     <div class="p-4 text-sm">
       Latest posts at <a class="text-blood font-bold" href={pageUrl}>facebook.com/TheLCFightTeam</a>.

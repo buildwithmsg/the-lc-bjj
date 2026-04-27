@@ -112,7 +112,7 @@ export const programs: Program[] = [
       'Classes are structured: warm-up games, a technique lesson, and partnered drills. Coaches keep a close eye on every kid, every minute.',
     ],
     whoItsFor: [
-      'Kids ages 5 and up — no prior experience needed.',
+      'Kids of all experience levels — no prior experience needed.',
       'Parents looking for a martial arts program that focuses on real skills, not just discipline.',
       'Kids with extra energy who need a healthy place to spend it.',
     ],
@@ -124,7 +124,7 @@ export const programs: Program[] = [
     ],
     coachSlug: 'chase-mann',
     metaTitle: 'Kids BJJ in Walnut Ridge, AR — The LC',
-    metaDescription: 'Brazilian Jiu Jitsu for kids ages 5+. Confidence, discipline, real skills. First class is free.',
+    metaDescription: 'Brazilian Jiu Jitsu for kids. Confidence, discipline, real skills. First class is free.',
   },
   {
     slug: 'mma-fight-team',
