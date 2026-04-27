@@ -20,7 +20,7 @@ describe('coaches data', () => {
   });
 
   it('getCoach returns by slug', () => {
-    expect(getCoach('head-coach')?.name).toBeTruthy();
+    expect(getCoach('tommy-walker')?.name).toBeTruthy();
     expect(getCoach('does-not-exist')).toBeUndefined();
   });
 });

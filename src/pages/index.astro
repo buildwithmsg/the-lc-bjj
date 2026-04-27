@@ -61,7 +61,7 @@ function photoFor(filename: string, map: typeof cardPhotos) {
   <section id="coaches" class="container-page py-20">
     <p class="eyebrow">Coaches</p>
     <h2 class="text-4xl mt-2">Who you'll train with</h2>
-    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {coaches.map((c) => (
         <CoachCard coach={c} photo={photoFor(c.photoFile, coachPhotos)} />
       ))}
