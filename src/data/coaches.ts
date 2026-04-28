@@ -20,8 +20,8 @@ export const coaches: Coach[] = [
     slug: 'april-nelms',
     name: 'Coach April Nelms',
     photoFile: 'coach-april-nelms.jpg',
-    bio: 'Brazilian Jiu Jitsu black belt under Professor Tommy Walker (2018) and a multiple-time national and world champion in BJJ and submission grappling. April assists with both Gi and NoGi classes at The LC, bringing championship-level technique and a competitive mindset to students at every skill level.',
-    credentials: ['BJJ Black Belt', 'National & World Champion'],
+    bio: 'Brazilian Jiu Jitsu black belt under Professor Tommy Walker (2018) and a multiple-time national champion in BJJ and submission grappling. April assists with both Gi and NoGi classes at The LC, bringing championship-level technique and a competitive mindset to students at every skill level.',
+    credentials: ['BJJ Black Belt', 'National Champion'],
     isHead: false,
   },
   {
