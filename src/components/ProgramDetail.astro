@@ -1,17 +1,19 @@
 ---
 import { Image } from 'astro:assets';
 import type { Program } from '@/data/programs';
-import { getCoach } from '@/data/coaches';
+import type { Coach } from '@/data/coaches';
 import { getProgram } from '@/data/programs';
 import { site } from '@/data/site';
 import { fighters, recentResults } from '@/data/fight-team';
 import ScheduleSnippet from './ScheduleSnippet.astro';
 import CoachCard from './CoachCard.astro';
-import FacebookFeed from './FacebookFeed.astro';
 
-interface Props { program: Program; heroPhoto: ImageMetadata; coachPhoto: ImageMetadata }
-const { program, heroPhoto, coachPhoto } = Astro.props;
-const coach = getCoach(program.coachSlug)!;
+interface Props {
+  program: Program;
+  heroPhoto: ImageMetadata;
+  coaches: { coach: Coach; photo: ImageMetadata }[];
+}
+const { program, heroPhoto, coaches } = Astro.props;
 const combined = program.combinedWith ? getProgram(program.combinedWith) : undefined;
 ---
 
@@ -107,11 +109,20 @@ const combined = program.combinedWith ? getProgram(program.combinedWith) : undef
     <ScheduleSnippet programSlug={program.slug} />
 
     <div>
-      <p class="eyebrow">Coach</p>
-      <div class="mt-3"><CoachCard coach={coach} photo={coachPhoto} /></div>
+      <p class="eyebrow">{coaches.length > 1 ? 'Coaches' : 'Coach'}</p>
+      <div class="mt-3 space-y-4">
+        {coaches.map(({ coach, photo }) => (
+          <CoachCard coach={coach} photo={photo} />
+        ))}
+      </div>
     </div>
 
-    <FacebookFeed variant="compact" />
+    <a
+      class="btn-primary w-full justify-center"
+      href={site.facebook}
+      target="_blank"
+      rel="noopener"
+    >Follow us on Facebook ↗</a>
   </aside>
 </section>
 

@@ -2,7 +2,7 @@
 import Layout from '@/components/Layout.astro';
 import ProgramDetail from '@/components/ProgramDetail.astro';
 import { programs } from '@/data/programs';
-import { getCoach } from '@/data/coaches';
+import { getCoach, type Coach } from '@/data/coaches';
 
 export async function getStaticPaths() {
   return programs.map((program) => ({
@@ -12,18 +12,24 @@ export async function getStaticPaths() {
 }
 
 const { program } = Astro.props;
-const coach = getCoach(program.coachSlug)!;
 
-const heroPhotos = import.meta.glob<{ default: ImageMetadata }>('@/assets/photos/*.jpg', { eager: true });
-const heroEntry = Object.entries(heroPhotos).find(([k]) => k.endsWith('/' + program.heroPhotoFile));
-if (!heroEntry) throw new Error(`Missing hero photo: ${program.heroPhotoFile}`);
-const heroPhoto = heroEntry[1].default;
+const photos = import.meta.glob<{ default: ImageMetadata }>('@/assets/photos/*.jpg', { eager: true });
+function resolvePhoto(filename: string, label: string): ImageMetadata {
+  const entry = Object.entries(photos).find(([k]) => k.endsWith('/' + filename));
+  if (!entry) throw new Error(`Missing ${label}: ${filename}`);
+  return entry[1].default;
+}
 
-const coachEntry = Object.entries(heroPhotos).find(([k]) => k.endsWith('/' + coach.photoFile));
-if (!coachEntry) throw new Error(`Missing coach photo: ${coach.photoFile}`);
-const coachPhoto = coachEntry[1].default;
+const heroPhoto = resolvePhoto(program.heroPhotoFile, 'hero photo');
+
+const coachSlugs = [program.coachSlug, ...(program.assistCoachSlugs ?? [])];
+const coachesWithPhotos: { coach: Coach; photo: ImageMetadata }[] = coachSlugs.map((slug) => {
+  const coach = getCoach(slug);
+  if (!coach) throw new Error(`Missing coach: ${slug}`);
+  return { coach, photo: resolvePhoto(coach.photoFile, 'coach photo') };
+});
 ---
 
 <Layout title={program.metaTitle} description={program.metaDescription} canonicalPath={`/${program.slug}`}>
-  <ProgramDetail program={program} heroPhoto={heroPhoto} coachPhoto={coachPhoto} />
+  <ProgramDetail program={program} heroPhoto={heroPhoto} coaches={coachesWithPhotos} />
 </Layout>

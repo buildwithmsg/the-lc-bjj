@@ -10,6 +10,7 @@ export interface Program {
   whoItsFor: string[];
   firstDayChecklist: string[];
   coachSlug: string;
+  assistCoachSlugs?: string[];
   combinedWith?: string;
   metaTitle: string;
   metaDescription: string;
@@ -22,8 +23,8 @@ export const programs: Program[] = [
     shortName: 'Gi BJJ',
     cardLabel: 'GI BJJ',
     tagline: 'The classic art of grips, sweeps, and submissions. Beginners welcome.',
-    heroPhotoFile: 'gi-class-mat.jpg',
-    cardPhotoFile: 'gi-card.jpg',
+    heroPhotoFile: 'kids-class.jpg',
+    cardPhotoFile: 'kids-card.jpg',
     whatItIs: [
       'Brazilian Jiu Jitsu in the gi — the traditional uniform — is the foundation of modern grappling. You learn how to control, sweep, and submit a resisting opponent using leverage and technique, not size or strength.',
       'A typical class is a warm-up, a focused technical lesson, and live rolling (sparring) with partners at your level. New students train at their own pace.',
@@ -40,6 +41,7 @@ export const programs: Program[] = [
       'Trim your fingernails and toenails — your training partners will thank you.',
     ],
     coachSlug: 'tommy-walker',
+    assistCoachSlugs: ['april-nelms', 'shayne-goforth'],
     metaTitle: 'Gi BJJ in Walnut Ridge, AR — The LC',
     metaDescription: 'Traditional Brazilian Jiu Jitsu training in the gi. First class is free. Walnut Ridge, AR.',
   },
@@ -67,6 +69,7 @@ export const programs: Program[] = [
       'Trim fingernails and toenails.',
     ],
     coachSlug: 'tommy-walker',
+    assistCoachSlugs: ['april-nelms', 'shayne-goforth'],
     combinedWith: 'kickboxing',
     metaTitle: 'NoGi BJJ in Walnut Ridge, AR — The LC',
     metaDescription: 'NoGi grappling combined with kickboxing — Mondays and Fridays at 6 PM. First class is free.',

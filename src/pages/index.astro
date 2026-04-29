@@ -11,6 +11,7 @@ import { programs } from '@/data/programs';
 import { coaches } from '@/data/coaches';
 import { site } from '@/data/site';
 import aboutBanner from '@/assets/photos/about-banner.jpg';
+import chasePrivatePhoto from '@/assets/photos/chase-private.jpg';
 
 // Map cardPhotoFile -> imported asset module so Astro <Image /> can transform it.
 const cardPhotos = import.meta.glob<{ default: ImageMetadata }>('@/assets/photos/*-card.jpg', { eager: true });
@@ -71,7 +72,7 @@ function photoFor(filename: string, map: typeof cardPhotos) {
   <section id="privates" class="container-page pb-20">
     <div class="bg-iron text-paper rounded-lg overflow-hidden grid lg:grid-cols-2 items-stretch">
       <div class="relative aspect-[4/3] lg:aspect-auto lg:min-h-[360px]">
-        <Image src={photoFor('coach-chase-mann.jpg', coachPhotos)} alt="Coach Chase Mann" class="absolute inset-0 w-full h-full object-cover object-top" />
+        <Image src={chasePrivatePhoto} alt="Coach Chase Mann teaching a private lesson" class="absolute inset-0 w-full h-full object-cover object-top" />
       </div>
       <div class="p-8 lg:p-12 flex flex-col justify-center">
         <p class="text-[11px] uppercase tracking-eyebrow text-blood font-bold">Private Lessons</p>
